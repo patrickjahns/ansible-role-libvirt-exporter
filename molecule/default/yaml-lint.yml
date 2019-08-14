@@ -1,5 +1,10 @@
 ---
 extends: default
+ignore: |
+  .travis/
+  .travis.yml
+  meta/
+
 rules:
   line-length: disable
   truthy: disable
