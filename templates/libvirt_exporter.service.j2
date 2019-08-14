@@ -1,0 +1,20 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Prometheus Libvirt Exporter
+After=network-online.target
+StartLimitInterval=0
+
+[Service]
+User={{ libvirt_exporter_system_user }}
+Group={{ libvirt_exporter_system_group }}
+EnvironmentFile=/etc/default/libvirt_exporter
+
+ExecStart=/usr/local/bin/libvirt_exporter
+
+SyslogIdentifier=libvirt_exporter
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

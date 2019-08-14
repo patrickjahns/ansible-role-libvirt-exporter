@@ -1,0 +1,21 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Patrick Jahns
+  description: Prometheus exporter for libvirt
+  issue_tracker_url: https://github.com/patrickjahns/ansible-role-libvirt-exporter/issues
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - prometheus
+    - libvirt
+    - exporter
+    - monitoring

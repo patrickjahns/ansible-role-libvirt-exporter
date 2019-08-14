@@ -1,0 +1,7 @@
+---
+libvirt_exporter_version: 1.0.1
+libvirt_exporter_web_listen_address: "0.0.0.0:9233"
+libvirt_exporter_uri: "qemu:///system"
+
+libvirt_exporter_system_group: "libvirt-exp"
+libvirt_exporter_system_user: "{{ libvirt_exporter_system_group }}"

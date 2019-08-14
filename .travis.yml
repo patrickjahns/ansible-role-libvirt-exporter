@@ -1,0 +1,26 @@
+---
+language: python
+services: docker
+
+env:
+  global:
+    - ROLE_NAME: libvirt_exporter
+  matrix:
+    - MOLECULE_DISTRO: debian8
+    - MOLECULE_DISTRO: ubuntu1804
+    - MOLECULE_DISTRO: debian9
+    - MOLECULE_DISTRO: ubuntu1804
+
+install:
+  # Install test dependencies.
+  - pip install molecule docker
+
+before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  - cd ../
+  - mv ansible-role-libvirt-exporter patrickjahns.$ROLE_NAME
+  - cd patrickjahns.$ROLE_NAME
+
+script:
+  # Run tests.
+  - molecule test

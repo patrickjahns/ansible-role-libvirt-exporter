@@ -1,0 +1,66 @@
+---
+- name: Create the libvirt_exporter group
+  group:
+    name: "{{ libvirt_exporter_system_group }}"
+    state: present
+    system: true
+  when: libvirt_exporter_system_group != "root"
+  tags:
+    - libvirt_exporter
+
+- name: Create the libvirt_exporter user
+  user:
+    name: "{{ libvirt_exporter_system_user }}"
+    groups: "{{ libvirt_exporter_system_group }}"
+    append: true
+    shell: /usr/sbin/nologin
+    system: true
+    createhome: false
+    home: /
+  when: libvirt_exporter_system_user != "root"
+  tags:
+    - libvirt_exporter
+
+- name: Ensure /usr/local/bin exists
+  file:
+    path: /usr/local/bin
+    state: directory
+    mode: 0755
+  tags:
+    - libvirt_exporter
+
+- name: Download libvirt_exporter binary to local folder
+  get_url:
+    url: "https://github.com/patrickjahns/libvirt-prometheus-exporter/releases/download/{{ libvirt_exporter_version }}/libvirt_exporter-amd64"
+    dest: "/usr/local/bin/libvirt_exporter"
+    mode: 0755
+  tags:
+    - libvirt_exporter
+
+- name: write default
+  notify:
+    - restart libvirt_exporter
+  template:
+    src: libvirt_exporter.default.j2
+    dest: /etc/default/libvirt_exporter
+  tags:
+    - libvirt_exporter
+
+- name: prepare service
+  notify:
+    - restart libvirt_exporter
+  template:
+    src: libvirt_exporter.service.j2
+    dest: /etc/systemd/system/libvirt_exporter.service
+  tags:
+    - libvirt_exporter
+
+- name: Ensure Libvirt Exporter is enabled on boot
+  become: true
+  systemd:
+    daemon_reload: true
+    name: libvirt_exporter
+    enabled: true
+    state: started
+  tags:
+    - libvirt_exporter

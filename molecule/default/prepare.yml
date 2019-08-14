@@ -1,0 +1,24 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+    - name: Ensure packages are available
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - qemu
+        - virt-manager
+
+    - name: Ensure libvirtd service is running
+      systemd:
+        daemon_reload: true
+        name: libvirtd
+        enabled: true
+        state: started

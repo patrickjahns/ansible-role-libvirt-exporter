@@ -1,0 +1,6 @@
+---
+- name: restart libvirt_exporter
+  systemd:
+    daemon_reload: true
+    name: libvirt_exporter
+    state: restarted
