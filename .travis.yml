@@ -7,7 +7,7 @@ env:
     - ROLE_NAME: libvirt_exporter
   matrix:
     - MOLECULE_DISTRO: debian8
-    - MOLECULE_DISTRO: ubuntu1804
+    - MOLECULE_DISTRO: ubuntu1604
     - MOLECULE_DISTRO: debian9
     - MOLECULE_DISTRO: ubuntu1804
 
