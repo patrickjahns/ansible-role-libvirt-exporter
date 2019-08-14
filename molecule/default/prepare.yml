@@ -15,6 +15,15 @@
       loop:
         - qemu
         - virt-manager
+      when: ansible_os_family == 'Debian'
+
+    - name: Ensure dbus service is running
+      systemd:
+        daemon_reload: true
+        name: dbus
+        enabled: true
+        state: started
+      when: ansible_os_family == 'Debian'
 
     - name: Ensure libvirtd service is running
       systemd:
@@ -22,3 +31,4 @@
         name: libvirtd
         enabled: true
         state: started
+      when: ansible_os_family == 'Debian'
