@@ -1,30 +1,27 @@
 ---
 language: python
 services: docker
+python:
+  - 3.7
 
 env:
-  global:
-    - ROLE_NAME: libvirt_exporter
   matrix:
-
-    - MOLECULE_DISTRO: ubuntu1604
-    - MOLECULE_DISTRO: debian9
+    - ANSIBLE: 2.7
+    - ANSIBLE: 2.8
+    - ANSIBLE: 2.9
     - MOLECULE_DISTRO: ubuntu1804
+      ANSIBLE: 2.9
+    - MOLECULE_DISTRO: ubuntu1604
+      ANSIBLE: 2.9
     - MOLECULE_DISTRO: debian10
+      ANSIBLE: 2.9
 
 install:
-  # Install test dependencies.
-  - pip install molecule docker
-
-before_script:
-  # Use actual Ansible Galaxy role name for the project directory.
-  - cd ../
-  - mv ansible-role-libvirt-exporter patrickjahns.$ROLE_NAME
-  - cd patrickjahns.$ROLE_NAME
+  - pip3 install tox-travis
 
 script:
   # Run tests.
-  - molecule test
+  - tox -- molecule test --all --destroy always
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
