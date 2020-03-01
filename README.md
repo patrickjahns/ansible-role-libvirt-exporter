@@ -1,16 +1,14 @@
-Role Name
+# libvirt-exporter
 =========
 [![Build Status](https://travis-ci.org/patrickjahns/ansible-role-libvirt-exporter.svg?branch=master)](https://travis-ci.org/patrickjahns/ansible-role-libvirt-exporter)
 
 A ansible role that installs and configures [libvirt-prometheus-exporter](https://github.com/patrickjahns/libvirt-prometheus-exporter) as system service
 
-Requirements
-------------
+## Requirements
 
 None.
 
-Role Variables
---------------
+## Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):   
   
@@ -45,13 +43,11 @@ libvirt_exporter_system_user: "{{ libvirt_exporter_system_group }}"
 The user and group for the service. Please ensure that this group has access to libvirt socket if a local socket is used.
 
 
-Dependencies
-------------
+## Dependencies
 
 None.
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```
 - hosts: all
@@ -62,13 +58,35 @@ Example Playbook
         libvirt_exporter_system_user: libvirt-exp
 ```
 
-License
--------
+## Local Testing
 
-MIT / BSD
+The preferred way of locally testing the role is to use Docker and [molecule](https://github.com/metacloud/molecule) (v3.x). You will have to install Docker on your system. See "Get started" for a Docker package suitable to for your system.
+We are using tox to simplify process of testing on multiple ansible versions. To install tox execute:
+```sh
+pip3 install tox
+```
+To run tests on all ansible versions (WARNING: this can take some time)
+```sh
+tox
+```
+To run a custom molecule command on custom environment with only default test scenario:
+```sh
+tox -e ansible29 -- molecule test -s default
+```
+For more information about molecule go to their [docs](http://molecule.readthedocs.io/en/latest/).
 
-Author Information
-------------------
+If you would like to run tests on remote docker host just specify `DOCKER_HOST` variable before running tox tests.
 
-This role was create in 2019 by [Patrick Jahns](http://github.com/patrickjahns)
+## Travis CI
+
+Combining molecule and travis CI allows us to test how new PRs will behave when used with multiple ansible versions and multiple operating systems. This also allows use to create test scenarios for different role configurations. As a result we have a quite large test matrix which will take more time than local testing, so please be patient.
+
+
+## License
+
+This project is licensed under MIT License. See [LICENSE](/LICENSE) for more details.
+
+## Maintainers and Contributors
+
+- [Patrick Jahns](https://github.com/patrickjahns)
 
