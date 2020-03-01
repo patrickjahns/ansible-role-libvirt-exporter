@@ -3,7 +3,7 @@
   group:
     name: "{{ libvirt_exporter_system_group }}"
     state: present
-    system: true
+    system: True
   when: libvirt_exporter_system_group != "root"
   tags:
     - libvirt_exporter
@@ -12,10 +12,10 @@
   user:
     name: "{{ libvirt_exporter_system_user }}"
     groups: "{{ libvirt_exporter_system_group }}"
-    append: true
+    append: True
     shell: /usr/sbin/nologin
-    system: true
-    createhome: false
+    system: True
+    createhome: False
     home: /
   when: libvirt_exporter_system_user != "root"
   tags:
@@ -37,18 +37,18 @@
   tags:
     - libvirt_exporter
 
-- name: write default
+- name: Write default
   notify:
-    - restart libvirt_exporter
+    - Restart libvirt_exporter
   template:
     src: libvirt_exporter.default.j2
     dest: /etc/default/libvirt_exporter
   tags:
     - libvirt_exporter
 
-- name: prepare service
+- name: Prepare service
   notify:
-    - restart libvirt_exporter
+    - Restart libvirt_exporter
   template:
     src: libvirt_exporter.service.j2
     dest: /etc/systemd/system/libvirt_exporter.service
@@ -56,11 +56,11 @@
     - libvirt_exporter
 
 - name: Ensure Libvirt Exporter is enabled on boot
-  become: true
+  become: True
   systemd:
-    daemon_reload: true
+    daemon_reload: True
     name: libvirt_exporter
-    enabled: true
+    enabled: True
     state: started
   tags:
     - libvirt_exporter
