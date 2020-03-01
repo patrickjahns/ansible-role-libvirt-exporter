@@ -3,6 +3,8 @@ extends: default
 ignore: |
   .travis/
   .travis.yml
+  .tox
+  .github
   meta/
 
 rules:
