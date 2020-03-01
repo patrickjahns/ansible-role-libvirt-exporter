@@ -21,6 +21,7 @@ install:
 
 script:
   # Run tests.
+  - cd .. && mv ansible-role-libvirt-exporter patrickjahns.libvirt_exporter && cd patrickjahns.libvirt_exporter
   - tox -- molecule test --all --destroy always
 
 notifications:
