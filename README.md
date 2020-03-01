@@ -1,6 +1,9 @@
 # libvirt-exporter
 =========
 [![Build Status](https://travis-ci.org/patrickjahns/ansible-role-libvirt-exporter.svg?branch=master)](https://travis-ci.org/patrickjahns/ansible-role-libvirt-exporter)
+[![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
+[![Ansible Role](https://img.shields.io/badge/ansible%20role-patrickjahns.libvirt_exporter-blue.svg)](https://galaxy.ansible.com/patrickjahns/libvirt_exporter)
+[![GitHub tag](https://img.shields.io/github/tag/patrickjahns/ansible-role-libvirt-exporter.svg)](https://github.com/patrickjahns/ansible-role-libvirt-exporter/tags)
 
 A ansible role that installs and configures [libvirt-prometheus-exporter](https://github.com/patrickjahns/libvirt-prometheus-exporter) as system service
 
