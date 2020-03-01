@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.0.1](https://github.com/patrickjahns/ansible-role-libvirt-exporter/tree/0.0.1) (2020-03-01)
+
+[Full Changelog](https://github.com/patrickjahns/ansible-role-libvirt-exporter/compare/1.0.0...0.0.1)
+
+**Merged pull requests:**
+
+- chore: added release automation [\#3](https://github.com/patrickjahns/ansible-role-libvirt-exporter/pull/3) ([patrickjahns](https://github.com/patrickjahns))
+- Improve ci [\#2](https://github.com/patrickjahns/ansible-role-libvirt-exporter/pull/2) ([patrickjahns](https://github.com/patrickjahns))
+- chore: updated repository settings [\#1](https://github.com/patrickjahns/ansible-role-libvirt-exporter/pull/1) ([patrickjahns](https://github.com/patrickjahns))
+
 ## [1.0.0](https://github.com/patrickjahns/ansible-role-libvirt-exporter/tree/1.0.0) (2019-08-23)
 
 [Full Changelog](https://github.com/patrickjahns/ansible-role-libvirt-exporter/compare/059d6801f29692122f25288d5d14ece74517ff48...1.0.0)
